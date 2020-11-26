@@ -1,0 +1,79 @@
+{% extends 'public.html.twig' %}
+
+{% block title %}Настройка регионов | База знаний{% endblock %}
+
+{% block body %}
+    <div id="dashboardPngLoader" style="display: none">LOADER</div>
+
+    <div id="dashboardRegionsPage">
+
+        <media-wiki-layout aside-links-json="{{ asideMenu.linksJson }}">
+
+            <div class="main-layout">
+                <nav aria-label="breadcrumb" class="breadcrumb-list">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <span><a href="/wiki/dashboard/regions">Статистика</a></span>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span>Настройки</span>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="page-block-header">
+                    <h1>Настройка закраски ячеек</h1>
+                </div>
+                <div class="row">
+                    <div class="page-item-container col-md-12">
+                        <div class="page-item page-block item-textBox">
+                            <div class="page-item-content">
+                                <div class="page-item-content-main main-side-block-content">
+                                    <div class="page-html-block">
+                                        <form action="" method="post" name="regions">
+                                            <div style="margin-bottom: 10px">
+                                                <a href="/wiki/dashboard/regions" class="btn-secondary">Вернуться</a>
+                                                <input class="btn-secondary" name="reset" type="submit" value="Сбросить на автоматические">
+                                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                                            </div>
+
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>Регион</th>
+                                                    <th>Цвет</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for region in data %}
+                                                    <tr>
+                                                        <td>{{ region.project }}</td>
+                                                        <td>
+                                                            <select name="statuses[{{ region.project }}][color]">
+                                                                {% for colorName,color in colors %}
+                                                                    <option {{ color == region.color ? 'selected' : '' }} value="{{ color }}">{{ colorName }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </media-wiki-layout>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/dashboardRegionsPage.js') }}"></script>
+{% endblock %}
+

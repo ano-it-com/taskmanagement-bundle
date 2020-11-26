@@ -1,0 +1,70 @@
+{% extends 'public.html.twig' %}
+
+{% block title %}Карточки процесса | База знаний{% endblock %}
+
+{% block body %}
+    <div id="dashboardRegionsPage">
+
+        <media-wiki-layout aside-links-json="{{ asideMenu.linksJson }}">
+
+            <div class="main-layout">
+                <nav aria-label="breadcrumb" class="breadcrumb-list">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            <span>Карточки процесса</span>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="page-block-header">
+                    <h1>Карточки процесса</h1>
+                </div>
+                <div class="row">
+                    <div class="page-item-container charts-process-cards col-md-12">
+                        <div class="page-item page-block item-textBox">
+                            <div class="page-item-content process-card-charts">
+                                <div class="page-item-content-main main-side-block-content">
+                                    <div class="page-html-block">
+                                        <p>
+                                            <div class="process-card-charts-block">
+                                                <hbar-and-line-chart
+                                                class="process-card-chart-component"
+                                                :sort-order="'desc'"
+                                                :line-tick-step-size="100"
+                                                :line-max-tick="600"
+                                                :top-grey-line-count="480"
+                                                :top-grey-line-title="''"
+                                                :get-hook-line="'/api/charts/process-cards/get/perWeek'"
+                                                :get-hook-bar="'/api/charts/process-cards/get/cardsByBlock'"
+                                                :get-hook-table="'/api/charts/process-cards/get/donePercentsData'">
+                                                </hbar-and-line-chart>
+
+                                                <hbar-and-line-chart
+                                                class="process-card-chart-component"
+                                                :sort-order="'asc'"
+                                                :line-tick-step-size="5"
+                                                :line-max-tick="35"
+                                                :top-grey-line-count="30"
+                                                :top-grey-line-title="''"
+                                                :get-hook-line="'/api/charts/process-cards/get/avgPerDay'"
+                                                :get-hook-bar="'/api/charts/process-cards/get/avgCompleteTime'"
+                                                :get-hook-table="'/api/charts/process-cards/get/upgradesByDistricts'">
+                                                </hbar-and-line-chart>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </media-wiki-layout>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/dashboardRegionsPage.js') }}"></script>
+{% endblock %}

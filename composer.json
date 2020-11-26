@@ -1,0 +1,35 @@
+{
+  "name": "ano-it-com/taskmanagement-bundle",
+  "version": "0.1.0",
+  "description": "Taskmanagement bundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AUTONOMOUS NONPROFIT ORGANIZATION \"RESEARCH CENTER\" INFORMATION TECHNOLOGIES",
+      "homepage": "https://github.com/ano-it-com/"
+    }
+  ],
+  "require": {
+    "php": "^7.3"
+  },
+  "require-dev": {
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "ANOITCOM\\TaskmanagementBundle\\": "src"
+    }
+  },
+  "scripts": {
+    "test": "./vendor/bin/simple-phpunit"
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "5.1.*"
+    }
+  }
+}

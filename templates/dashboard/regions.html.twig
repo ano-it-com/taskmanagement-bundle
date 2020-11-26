@@ -1,0 +1,1943 @@
+{% extends 'public.html.twig' %}
+
+{% block title %}Рейтинг | База знаний{% endblock %}
+
+{% block body %}
+    <div id="dashboardPngLoader">
+        <div class="text">Пожалуйста, подождите...</div>
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+
+    <div id="dashboardRegionsPage">
+
+        <media-wiki-layout aside-links-json="{{ asideMenu.linksJson }}">
+
+            <div class="main-layout">
+                <nav aria-label="breadcrumb" class="breadcrumb-list">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            <span>Статистика</span>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="page-block-header">
+                    <h1>Рейтинг</h1>
+                </div>
+                <div class="row">
+                    <div class="page-item-container col-md-12">
+                        <div class="page-item page-block item-textBox">
+                            <div class="page-item-wrapper">
+                                <div class="page-item-header-right flex-row">
+                                    <div class="page-item-title">
+                                        <h2>Рейтинг</h2>
+                                        <a href="#" class="btn-primary" @click.prevent="downloadPng('dashboardRegionsMap', 'Карта результатов')">Скачать PNG</a>
+
+                                        {% if allowedEdit %}
+                                            <a style="margin-left: 10px" href="/wiki/dashboard/regions/settings" class="btn-secondary">Изменить цвета</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-item-content">
+                                <div class="page-item-content-main main-side-block-content">
+                                    <div class="page-html-block">
+
+                                        <div id="dashboardRegionsMap" class="dashboard__map">
+                                            <div class="legends">
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color green"><span></span></div>
+                                                    <div class="legends__item-label">Выполнено</div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color light-yellow"><span></span></div>
+                                                    <div class="legends__item-label">Этап 1<br>
+                                                        <small>% ниже среднего</small>
+                                                    </div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color red"><span></span></div>
+                                                    <div class="legends__item-label">Проблемный</div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color light-green"><span></span></div>
+                                                    <div class="legends__item-label">Этап 1<br>
+                                                        <small>% выше среднего</small>
+                                                    </div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color orange"><span></span></div>
+                                                    <div class="legends__item-label">Зона риска</div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color light-gray"><span></span></div>
+                                                    <div class="legends__item-label">Неподдерживаемые регионы</div>
+                                                </div>
+                                            </div>
+
+                                            <svg width="100%" viewBox="0 0 1606 918" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <title>MAP</title>
+                                                <style type="text/css">
+                                                    g text {
+                                                        font-family: 'Roboto', 'Arial', sans-serif;
+                                                        font-weight: 800;
+                                                    }
+                                                </style>
+
+                                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g id="MAP" transform="translate(2.000000, 2.000000)">
+                                                        <g id="SZFO_1">
+                                                            <g id="murm" opacity="0.900000036" transform="translate(169.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['МУРМАНСКАЯ ОБЛ (51)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["МУРМАНСКАЯ ОБЛ (51)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Мурм" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Мурм</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="karel" opacity="0.900000036" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАРЕЛИЯ (10)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАРЕЛИЯ (10)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Карел" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Карел</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="novgor" opacity="0.900000036" transform="translate(169.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['НОВГОРОДСКАЯ ОБЛ (53)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["НОВГОРОДСКАЯ ОБЛ (53)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+                                                                    <text id="Новгор" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Новгор</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="lenobl" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЛЕНИНГРАДСКАЯ ОБЛ (47)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЛЕНИНГРАДСКАЯ ОБЛ (47)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="ЛенОбл" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">ЛенОбл</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="spb" opacity="0.900000036" transform="translate(86.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['САНКТ-ПЕТЕРБУРГ (78)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["САНКТ-ПЕТЕРБУРГ (78)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="СПб" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">СПб</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="pskov" opacity="0.900000036" transform="translate(86.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ПСКОВСКАЯ ОБЛ (60)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ПСКОВСКАЯ ОБЛ (60)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Псков" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Псков</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kalin" opacity="0.900000036" transform="translate(3.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАЛИНИНГРАДСКАЯ ОБЛ (39)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАЛИНИНГРАДСКАЯ ОБЛ (39)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Калин" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Калин</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="volog" opacity="0.900000036" transform="translate(252.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ВОЛОГОДСКАЯ ОБЛ (35)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ВОЛОГОДСКАЯ ОБЛ (35)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Волог" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Волог</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy">
+                                                                <polygon id="Path" stroke="#7DD8E3" stroke-width="5"
+                                                                         points="254.5 0.5 254.5 83.5 337.5 83.5 337.5 171.5 254.5 171.5 254.5 254.5 171.5 254.5 171.5 337.5 0.5 337.5 0.5 249.5 83.5 249.5 83.5 83.5 166.5 83.5 166.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2"
+                                                                         points="253 2 253 85 336 85 336 170 253 170 253 253 170 253 170 336 2 336 2 251 85 251 85 85 168 85 168 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(257.000000, 25.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#7DD8E3" x="0" y="0" width="52" height="25"></rect>
+                                                                <g id="СЗФО" transform="translate(6.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">СЗФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="CFO" transform="translate(184.000000, 102.000000)">
+                                                            <g id="yaroslav" opacity="0.900000036" transform="translate(169.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЯРОСЛАВСКАЯ ОБЛ (76)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЯРОСЛАВСКАЯ ОБЛ (76)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Ярослав" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Ярослав</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="moskva" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Rectangle" fill="#EBEBEB" fill-rule="nonzero">
+                                                                    <rect x="0" y="0" width="83" height="83"></rect>
+                                                                </g>
+                                                                <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+                                                                <g id="ЛенОбл" transform="translate(9.000000, 33.000000)" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto"
+                                                                   font-size="15" font-weight="bold">
+                                                                    <text id="Москва">
+                                                                        <tspan x="0" y="14">Москва</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="mosobl" transform="translate(169.000000, 169.000000)">
+                                                                <g id="Rectangle" fill="#EBEBEB" fill-rule="nonzero">
+                                                                    <rect x="0" y="0" width="83" height="83"></rect>
+                                                                </g>
+                                                                <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+                                                                <g id="ЛенОбл" transform="translate(9.000000, 33.000000)" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto"
+                                                                   font-size="15" font-weight="bold">
+                                                                    <text id="МосОбл">
+                                                                        <tspan x="0" y="14">МосОбл</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tul" opacity="0.900000036" transform="translate(169.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТУЛЬСКАЯ ОБЛ (71)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТУЛЬСКАЯ ОБЛ (71)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Тул" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Тул</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="lipeck" opacity="0.900000036" transform="translate(169.000000, 335.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЛИПЕЦКАЯ ОБЛ (48)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЛИПЕЦКАЯ ОБЛ (48)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Липецк" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Липецк</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="belgor" opacity="0.900000036" transform="translate(169.000000, 418.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['БЕЛГОРОДСКАЯ ОБЛ (31)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["БЕЛГОРОДСКАЯ ОБЛ (31)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Белгор" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Белгор</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tver" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТВЕРСКАЯ ОБЛ (69)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТВЕРСКАЯ ОБЛ (69)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Тверь" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Тверь</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kalug" opacity="0.900000036" transform="translate(86.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАЛУЖСКАЯ ОБЛ (40)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАЛУЖСКАЯ ОБЛ (40)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Калуж" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Калуж</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="orlov" opacity="0.900000036" transform="translate(86.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ОРЛОВСКАЯ ОБЛ (57)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ОРЛОВСКАЯ ОБЛ (57)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Орлов" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Орлов</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kursk" opacity="0.900000036" transform="translate(86.000000, 335.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КУРСКАЯ ОБЛ (46)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КУРСКАЯ ОБЛ (46)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Курск" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Курск</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="smol" opacity="0.900000036" transform="translate(3.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['СМОЛЕНСКАЯ ОБЛ (67)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["СМОЛЕНСКАЯ ОБЛ (67)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Смол" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Смол</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="bryansk" opacity="0.900000036" transform="translate(3.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['БРЯНСКАЯ ОБЛ (32)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["БРЯНСКАЯ ОБЛ (32)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Брянск" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Брянск</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="ivan" opacity="0.900000036" transform="translate(252.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ИВАНОВСКАЯ ОБЛ (37)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ИВАНОВСКАЯ ОБЛ (37)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Иван" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Иван</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="vlad" opacity="0.900000036" transform="translate(252.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ВЛАДИМИРСКАЯ ОБЛ (33)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ВЛАДИМИРСКАЯ ОБЛ (33)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Влад" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Влад</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="ryazan" opacity="0.900000036" transform="translate(252.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['РЯЗАНСКАЯ ОБЛ (62)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["РЯЗАНСКАЯ ОБЛ (62)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Рязань" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Рязань</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tambov" opacity="0.900000036" transform="translate(252.000000, 335.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТАМБОВСКАЯ ОБЛ (68)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТАМБОВСКАЯ ОБЛ (68)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Тамбов" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Тамбов</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="voron" opacity="0.900000036" transform="translate(252.000000, 418.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ВОРОНЕЖСКАЯ ОБЛ (36)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ВОРОНЕЖСКАЯ ОБЛ (36)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Ворон" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Ворон</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kostr" opacity="0.900000036" transform="translate(335.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КОСТРОМСКАЯ ОБЛ (44)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КОСТРОМСКАЯ ОБЛ (44)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Костр" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Костр</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-4">
+                                                                <polygon id="Path" stroke="#5992E7" stroke-width="5"
+                                                                         points="254.5 0.5 254.5 83.5 420.5 83.5 420.5 171.5 337.5 171.5 337.5 503.5 166.5 503.5 166.5 420.5 83.5 420.5 83.5 337.5 0.5 337.5 0.5 166.5 83.5 166.5 83.5 83.5 166.5 83.5 166.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2"
+                                                                         points="253 2 253 85 419 85 419 170 336 170 336 502 168 502 168 419 85 419 85 336 2 336 2 168 85 168 85 85 168 85 168 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(257.000000, 29.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#5992E7" x="0" y="0" width="46" height="25"></rect>
+                                                                <g id="ЦФО" transform="translate(6.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">ЦФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="YUFO" transform="translate(121.000000, 556.000000)">
+                                                            <g id="volgog" opacity="0.900000036" transform="translate(418.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ВОЛГОГРАДСКАЯ ОБЛ (34)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ВОЛГОГРАДСКАЯ ОБЛ (34)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Волгог" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Волгог</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kalm" opacity="0.900000036" transform="translate(418.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАЛМЫКИЯ (08)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАЛМЫКИЯ (08)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Калм" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Калм</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="astrakh" opacity="0.900000036" transform="translate(501.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['АСТРАХАНСКАЯ ОБЛ (30)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["АСТРАХАНСКАЯ ОБЛ (30)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Астрах" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Астрах</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="rostov" opacity="0.900000036" transform="translate(335.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['РОСТОВСКАЯ ОБЛ (61)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["РОСТОВСКАЯ ОБЛ (61)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Ростов" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Ростов</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="krasn" opacity="0.900000036" transform="translate(252.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КРАСНОДАРСКИЙ КРАЙ (23)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КРАСНОДАРСКИЙ КРАЙ (23)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Красн" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Красн</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="adig" opacity="0.900000036" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['АДЫГЕЯ (01)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["АДЫГЕЯ (01)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Адыг" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Адыг</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="krim" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КРЫМ (91)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КРЫМ (91)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Крым" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Крым</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="sevast" opacity="0.900000036" transform="translate(3.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['СЕВАСТОПОЛЬ (92)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["СЕВАСТОПОЛЬ (92)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Севаст" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Севаст</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-2">
+                                                                <polygon id="Path" stroke="#13329E" stroke-width="5"
+                                                                         points="503.5 0.5 503.5 83.5 586.5 83.5 586.5 171.5 0.5 171.5 0.5 83.5 415.5 83.5 415.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2" points="502 2 502 85 585 85 585 170 2 170 2 85 417 85 417 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(589.000000, 117.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#13329E" x="0" y="0" width="46" height="25"></rect>
+                                                                <g id="ЮФО" transform="translate(5.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">ЮФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="SZFO_2" transform="translate(702.000000, 19.000000)">
+                                                            <g id="nao" opacity="0.900000036" transform="translate(86.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['НЕНЕЦКИЙ АО (83)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["НЕНЕЦКИЙ АО (83)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="НАО" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">НАО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="komi" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КОМИ (11)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КОМИ (11)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Коми" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Коми</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="arkhang" opacity="0.900000036" transform="translate(3.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['АРХАНГЕЛЬСКАЯ ОБЛ (29)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["АРХАНГЕЛЬСКАЯ ОБЛ (29)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Арханг" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Арханг</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-6">
+                                                                <polygon id="Path" stroke="#7DD8E3" stroke-width="5" points="171.5 0.5 171.5 171.5 0.5 171.5 0.5 83.5 83.5 83.5 83.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2" points="170 2 170 170 2 170 2 85 85 85 85 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(174.000000, 27.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#7DD8E3" x="0" y="0" width="52" height="25"></rect>
+                                                                <g id="СЗФО" transform="translate(6.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">СЗФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="PFO" transform="translate(536.000000, 205.000000)">
+                                                            <g id="perm" opacity="0.900000036" transform="translate(252.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ПЕРМСКИЙ КРАЙ (59)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ПЕРМСКИЙ КРАЙ (59)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Перм" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Перм</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kirov" opacity="0.900000036" transform="translate(169.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КИРОВСКАЯ ОБЛ (43)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КИРОВСКАЯ ОБЛ (43)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Киров" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Киров</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tatar" opacity="0.900000036" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТАТАРСТАН (16)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТАТАРСТАН (16)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Татар" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Татар</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="samar" opacity="0.900000036" transform="translate(169.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['САМАРСКАЯ ОБЛ (63)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["САМАРСКАЯ ОБЛ (63)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Самар" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Самар</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="oren" opacity="0.900000036" transform="translate(169.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ОРЕНБУРГСКАЯ ОБЛ (56)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ОРЕНБУРГСКАЯ ОБЛ (56)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Орен" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Орен</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="mariiy" opacity="0.900000036" transform="translate(86.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['МАРИЙ ЭЛ (12)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["МАРИЙ ЭЛ (12)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Марий" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Марий</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="chuvash" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЧУВАШСКАЯ (21)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЧУВАШСКАЯ (21)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Чуваш" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Чуваш</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="ulyan" opacity="0.900000036" transform="translate(86.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['УЛЬЯНОВСКАЯ ОБЛ (73)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["УЛЬЯНОВСКАЯ ОБЛ (73)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Ульян" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Ульян</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="sarat" opacity="0.900000036" transform="translate(86.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['САРАТОВСКАЯ ОБЛ (64)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["САРАТОВСКАЯ ОБЛ (64)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Сарат" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Сарат</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="nijeg" opacity="0.900000036" transform="translate(3.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['НИЖЕГОРОДСКАЯ ОБЛ (52)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["НИЖЕГОРОДСКАЯ ОБЛ (52)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Нижег" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Нижег</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="mord" opacity="0.900000036" transform="translate(3.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['МОРДОВИЯ (13)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["МОРДОВИЯ (13)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Морд" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Морд</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="penza" opacity="0.900000036" transform="translate(3.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ПЕНЗЕНСКАЯ ОБЛ (58)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ПЕНЗЕНСКАЯ ОБЛ (58)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Пенза" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Пенза</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="udmur" opacity="0.900000036" transform="translate(252.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['УДМУРТИЯ (18)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["УДМУРТИЯ (18)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Удмур" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Удмур</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="bashk" opacity="0.900000036" transform="translate(252.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['БАШКОРТОСТАН (02)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["БАШКОРТОСТАН (02)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Башк" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Башк</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-5">
+                                                                <polygon id="Path" stroke="#FD72D4" stroke-width="5"
+                                                                         points="83.5 0.5 337.5 0.5 337.5 254.5 254.5 254.5 254.5 336.5 0.5 336.5 0.5 83.5 83.5 83.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2" points="336 2 336 253 253 253 253 335 2 335 2 85 85 85 85 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(257.000000, 284.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#FD72D4" x="0" y="0" width="46" height="25"></rect>
+                                                                <g id="ПФО" transform="translate(6.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">ПФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="SKFO" transform="translate(370.000000, 742.000000)">
+                                                            <g id="chechnya" opacity="0.900000036" transform="translate(169.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЧЕЧЕНСКАЯ (20)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЧЕЧЕНСКАЯ (20)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Чечня" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Чечня</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="ingush" opacity="0.900000036" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ИНГУШЕТИЯ (06)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ИНГУШЕТИЯ (06)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Ингуш" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Ингуш</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="dagest" opacity="0.900000036" transform="translate(252.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ДАГЕСТАН (05)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ДАГЕСТАН (05)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Дагест" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Дагест</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="stavr" opacity="0.900000036" transform="translate(86.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['СТАВРОПОЛЬСКИЙ КРАЙ (26)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["СТАВРОПОЛЬСКИЙ КРАЙ (26)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Ставр" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Ставр</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="osetiya" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['СЕВЕРНАЯ ОСЕТИЯ (15)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["СЕВЕРНАЯ ОСЕТИЯ (15)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Осетия" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Осетия</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kchr" opacity="0.900000036" transform="translate(3.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАРАЧАЕВО-ЧЕРКЕССИЯ (09)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАРАЧАЕВО-ЧЕРКЕССИЯ (09)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="КЧР" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">КЧР</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kbr" opacity="0.900000036" transform="translate(3.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАБАРДИНО-БАЛКАРСКАЯ (07)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАБАРДИНО-БАЛКАРСКАЯ (07)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="КБР" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">КБР</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-3">
+                                                                <polygon id="Path" stroke="#959595" stroke-width="5" points="337.5 0.5 337.5 88.5 254.5 88.5 254.5 171.5 0.5 171.5 0.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2" points="336 2 336 87 253 87 253 170 2 170 2 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(340.000000, 33.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#959595" x="0" y="0" width="52" height="25"></rect>
+                                                                <g id="СКФО" transform="translate(6.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">СКФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="UFO" transform="translate(888.000000, 124.000000)">
+                                                            <g id="yanao" opacity="0.900000036" transform="translate(3.000000, 2.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЯМАЛО-НЕНЕЦКИЙ (89)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЯМАЛО-НЕНЕЦКИЙ (89)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="ЯНАО" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">ЯНАО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="chelyab" opacity="0.900000036" transform="translate(3.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЧЕЛЯБИНСКАЯ ОБЛ (74)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЧЕЛЯБИНСКАЯ ОБЛ (74)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Челяб" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Челяб</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="hmao" opacity="0.900000036" transform="translate(3.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ХАНТЫ-МАНСИЙСКИЙ АО (86)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ХАНТЫ-МАНСИЙСКИЙ АО (86)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="ХМАО" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">ХМАО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="sverd" opacity="0.900000036" transform="translate(3.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['СВЕРДЛОВСКАЯ ОБЛ (66)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["СВЕРДЛОВСКАЯ ОБЛ (66)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Сверд" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Сверд</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tyumen" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТЮМЕНСКАЯ ОБЛ (72)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТЮМЕНСКАЯ ОБЛ (72)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Тюмен" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Тюмен</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kurgan" opacity="0.900000036" transform="translate(86.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КУРГАНСКАЯ ОБЛ (45)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КУРГАНСКАЯ ОБЛ (45)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Курган" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Курган</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-7">
+                                                                <polygon id="Path" stroke="#AF57E6" stroke-width="5"
+                                                                         points="88.5 0.5 88.5 83.5 171.5 83.5 171.5 254.5 88.5 254.5 88.5 337.5 0.5 337.5 0.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2" points="87 2 87 85 170 85 170 253 87 253 87 336 2 336 2 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(91.000000, 30.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#AF57E6" x="0" y="0" width="46" height="25"></rect>
+                                                                <g id="УФО" transform="translate(7.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">УФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="SFO" transform="translate(992.000000, 144.000000)">
+                                                            <g id="krasyar" opacity="0.900000036" transform="translate(169.000000, 3.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КРАСНОЯРСКИЙ КРАЙ (24)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КРАСНОЯРСКИЙ КРАЙ (24)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="КрасЯр" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">КрасЯр</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="kemer" opacity="0.900000036" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КЕМЕРОВСКАЯ ОБЛ (42)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КЕМЕРОВСКАЯ ОБЛ (42)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Кемер" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Кемер</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="hakas" opacity="0.900000036" transform="translate(169.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ХАКАСИЯ (19)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ХАКАСИЯ (19)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Хакас" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Хакас</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tyva" opacity="0.900000036" transform="translate(169.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТЫВА (17)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТЫВА (17)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Тыва" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Тыва</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="irkut" opacity="0.900000036" transform="translate(252.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ИРКУТСКАЯ ОБЛ (38)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ИРКУТСКАЯ ОБЛ (38)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Иркут" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Иркут</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="tomsk" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ТОМСКАЯ ОБЛ (70)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ТОМСКАЯ ОБЛ (70)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Томск" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Томск</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="nsk" opacity="0.900000036" transform="translate(86.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['НОВОСИБИРСКАЯ ОБЛ (54)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["НОВОСИБИРСКАЯ ОБЛ (54)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Нск" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Нск</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="altkr" opacity="0.900000036" transform="translate(86.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['АЛТАЙСКИЙ КРАЙ (22)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["АЛТАЙСКИЙ КРАЙ (22)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="АлтКр" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">АлтКр</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="resalt" opacity="0.900000036" transform="translate(86.000000, 335.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['АЛТАЙ РЕСП. (04)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["АЛТАЙ РЕСП. (04)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="РесАлт" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">РесАлт</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="omsk" opacity="0.900000036" transform="translate(3.000000, 252.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ОМСКАЯ ОБЛ (55)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ОМСКАЯ ОБЛ (55)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Омск" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Омск</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-8">
+                                                                <polygon id="Path" stroke="#1FA946" stroke-width="5"
+                                                                         points="254.5 0.5 254.5 83.5 337.5 83.5 337.5 171.5 254.5 171.5 254.5 337.5 171.5 337.5 171.5 420.5 83.5 420.5 83.5 337.5 0.5 337.5 0.5 249.5 83.5 249.5 83.5 83.5 166.5 83.5 166.5 0.5"></polygon>
+                                                                <polygon id="Path" stroke="#FFFFFF" stroke-width="2"
+                                                                         points="253 2 253 85 336 85 336 170 253 170 253 336 170 336 170 419 85 419 85 336 2 336 2 251 85 251 85 85 168 85 168 2"></polygon>
+                                                            </g>
+                                                            <g id="label" transform="translate(257.000000, 30.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#1FA946" x="0" y="0" width="46" height="25"></rect>
+                                                                <g id="СФО" transform="translate(7.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">СФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                        <g id="DFO" transform="translate(1264.000000, 83.000000)">
+                                                            <g id="kamchat" opacity="0.900000036" transform="translate(252.000000, 2.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['КАМЧАТСКИЙ КРАЙ (41)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["КАМЧАТСКИЙ КРАЙ (41)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Камчат" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Камчат</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="chukot" opacity="0.900000036" transform="translate(169.000000, 2.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЧУКОТСКИЙ АО (87)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЧУКОТСКИЙ АО (87)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Чукот" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Чукот</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="magad" opacity="0.900000036" transform="translate(169.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['МАГАДАНСКАЯ ОБЛ (49)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["МАГАДАНСКАЯ ОБЛ (49)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Магад" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Магад</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="habar" opacity="0.900000036" transform="translate(169.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ХАБАРОВСКИЙ КРАЙ (27)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ХАБАРОВСКИЙ КРАЙ (27)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Хабар" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Хабар</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="sahal" opacity="0.900000036" transform="translate(252.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['САХАЛИНСКАЯ ОБЛ (65)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["САХАЛИНСКАЯ ОБЛ (65)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Сахал" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Сахал</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="yakut" opacity="0.900000036" transform="translate(86.000000, 86.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['САХА (14)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks['САХА (14)'] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Якут" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Якут</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="amur" opacity="0.900000036" transform="translate(86.000000, 169.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['АМУРСКАЯ ОБЛ (28)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["АМУРСКАЯ ОБЛ (28)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Амур" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Амур</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="eao" opacity="0.900000036" transform="translate(86.000000, 253.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЕВРЕЙСКАЯ АО (79)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЕВРЕЙСКАЯ АО (79)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="ЕАО" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">ЕАО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="buryat" opacity="0.900000036" transform="translate(3.000000, 253.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['БУРЯТИЯ (03)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["БУРЯТИЯ (03)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Бурят" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Бурят</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="zabaik" opacity="0.900000036" transform="translate(3.000000, 335.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ЗАБАЙКАЛЬСКИЙ КРАЙ (75)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ЗАБАЙКАЛЬСКИЙ КРАЙ (75)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Забайк" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Забайк</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="prim" opacity="0.900000036" transform="translate(171.000000, 337.000000)">
+                                                                <g id="Group">
+                                                                    <g id="Rectangle" fill="{{ colors['ПРИМОРСКИЙ КРАЙ (25)'] }}" fill-rule="nonzero">
+                                                                        <rect x="0" y="0" width="83" height="83"></rect>
+                                                                    </g>
+                                                                    <g id="4,5" transform="translate(9.000000, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" class="value-region"
+                                                                       font-size="24" font-weight="700">
+                                                                        <text>
+                                                                            <tspan x="0" y="28">{{ marks["ПРИМОРСКИЙ КРАЙ (25)"] }}</tspan>
+                                                                        </text>
+                                                                    </g>
+                                                                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="0.5" width="82" height="82"></rect>
+
+                                                                    <text id="Прим" fill="#000000" fill-rule="nonzero" font-family="Roboto-Bold, Roboto" font-size="15" font-weight="bold">
+                                                                        <tspan x="9" y="23">Прим</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                            <g id="Combined-Shape-Copy-9">
+                                                                <path d="M337.5,0.5 L337.5,88.5 L254.5,88.5 L254.5,166.5 L337.5,166.5 L337.5,254.5 L171.5,254.5 L171.5,337.5 L88.5,337.5 L88.5,420.5 L0.5,420.5 L0.5,249.5 L83.5,249.5 L83.5,83.5 L166.5,83.5 L166.5,0.5 L337.5,0.5 Z M256.5,334.5 L256.5,422.5 L168.5,422.5 L168.5,334.5 L256.5,334.5 Z"
+                                                                      id="Shape" stroke="#717171" stroke-width="5"></path>
+                                                                <path d="M336,2 L336,87 L253,87 L253,168 L336,168 L336,253 L170,253 L170,336 L87,336 L87,419 L2,419 L2,251 L85,251 L85,85 L168,85 L168,2 L336,2 Z M255,336 L255,421 L170,421 L170,336 L255,336 Z"
+                                                                      id="Shape" stroke="#FFFFFF" stroke-width="2"></path>
+                                                            </g>
+                                                            <g id="label" transform="translate(257.000000, 116.000000)" fill-rule="nonzero">
+                                                                <rect id="Rectangle" fill="#717171" x="0" y="0" width="46" height="25"></rect>
+                                                                <g id="ДФО" transform="translate(7.000000, 4.000000)" fill="#FFFFFF" class="value-region" font-size="14"
+                                                                   font-weight="700">
+                                                                    <text>
+                                                                        <tspan x="0" y="13">ДФО</tspan>
+                                                                    </text>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+
+
+                                            </svg>
+
+                                            <div style="clear: both;"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-item-container col-md-12">
+                        <div class="page-item page-block item-textBox">
+                            <div class="page-item-wrapper">
+                                <div class="page-item-header-right flex-row">
+                                    <div class="page-item-title">
+                                        <h2>Диаграммы результатов</h2>
+                                        <a href="#" class="btn-primary" @click.prevent="downloadPng('dashboardRegionsChart', 'Диаграммы результатов по выполнению поручения')">Скачать PNG</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-item-content">
+                                <div class="page-item-content-main main-side-block-content">
+                                    <div class="page-html-block">
+
+                                        <div class="diagram-block" id="dashboardRegionsChart">
+
+                                            <div class="legends legends__diagram">
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color green"><span></span></div>
+                                                    <div class="legends__item-label">Выполнено</div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color light-yellow"><span></span></div>
+                                                    <div class="legends__item-label">Этап 1 <br>
+                                                        <small>% ниже среднего</small>
+                                                    </div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color red"><span></span></div>
+                                                    <div class="legends__item-label">Проблемный регион</div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color light-green"><span></span></div>
+                                                    <div class="legends__item-label">Этап 1 <br>
+                                                        <small>% выше среднего</small>
+                                                    </div>
+                                                </div>
+                                                <div class="legends__item">
+                                                    <div class="legends__item-color orange"><span></span></div>
+                                                    <div class="legends__item-label">Зона риска</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="diagram_box-list">
+                                                <div class="diagram-left">
+                                                    <div class="diagram__big">
+                                                        <div class="diagram-title__big">РФ</div>
+                                                        <div class="diagram-box">
+                                                            <chart
+
+                                                                    :values="{{ colorsCounts }}"
+                                                                    :labels="{{ colorsNames }}"
+                                                                    :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+
+
+                                                                    :center-text="{
+                                                                        text: '{{ colorsTotalCount }}',
+                                                                        color: '#27587e',
+                                                                        //fontStyle: 'Arial',
+                                                                        //sidePadding: 20,
+                                                                        //minFontSize: 25,
+                                                                        //lineHeight: 25,
+                                                                        }"
+                                                                    :datalabels="{
+                                                    // https://chartjs-plugin-datalabels.netlify.app/guide/options.html#scriptable-options
+                                                    color: '#14324a',
+                                                    font: {
+                                                        weight: 'bold',
+                                                        size: '22',
+                                                    },
+                                               }"></chart>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="diagram-right">
+                                                    <div class="diagram__list">
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                ЦФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Центральный']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Центральный']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Центральный']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                ДФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Дальневосточный']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Дальневосточный']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Дальневосточный']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                ПФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Приволжский']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Приволжский']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Приволжский']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                СЗФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Северо-Западный']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Северо-Западный']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Северо-Западный']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                СКФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Северо-Кавказский']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Северо-Кавказский']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Северо-Кавказский']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                СФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Сибирский']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Сибирский']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Сибирский']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                УрФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Уральский']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Уральский']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Уральский']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                        <div class="diagram__item">
+                                                            <div class="diagram-title">
+                                                                ЮФО
+                                                            </div>
+                                                            <chart :values="{{ colorsByDistricts['Южный']['counts'] }}"
+                                                                   :labels="{{ colorsByDistricts['Южный']['names'] }}"
+                                                                   :colors="['#e77b1e', '#35b651', '#e23535', '#fae698', '#fae698', '#abd57e']"
+                                                                   :center-text="{text: '{{ colorsByDistricts['Южный']['total'] }}', color: '#27587e', font: {size: '18' }}"
+                                                                   :datalabels="{color: '#14324a', font: { weight: 'bold', size: '11'}}"></chart>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="clear: both;"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </media-wiki-layout>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/dashboardRegionsPage.js') }}"></script>
+{% endblock %}
